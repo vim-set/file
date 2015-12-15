@@ -1,4 +1,5 @@
 scriptencoding = utf-8
+
 "
 " Written by Aron Griffis <agriffis@gentoo.org>
 " Modified by Ryan Phillips <rphillips@gentoo.org>
@@ -8,6 +9,7 @@ scriptencoding = utf-8
 " You can override any of these settings on a global basis via the
 " "/etc/vim/vimrc.local" file, and on a per-user basis via "~/.vimrc". You may
 " need to create these.
+"
 "
 " {{{ General settings
 " The following are some sensible defaults for Vim for most users.
