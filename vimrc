@@ -1,4 +1,43 @@
-scriptencoding = utf-8
+" vundle configuration
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'scrooloose/nerdtree'                " NERDTree
+Plugin 'kien/ctrlp.vim'	                    " ctrlp	
+Plugin 'Shougo/neocomplcache.vim'           " neocomplcache
+Plugin 'scrooloose/syntastic'               " Syntactic
+Plugin 'mileszs/ack.vim'                    " Ack.vim
+Plugin 'majutsushi/tagbar'                  " Tagbar
+Plugin 'bling/vim-airline'                  " Airline
+Plugin 'milkypostman/vim-togglelist'
+Plugin 'cespare/tlist'
+"[cscope](http://cscope.sourceforge.net/) 
+"[ctags](http://ctags.sourceforge.net/)   " let Vundle manage Vundle, required
+
+Plugin 'othree/javascript-libraries-syntax.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
+"
+" Brief help
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 "
 " Written by Aron Griffis <agriffis@gentoo.org>
@@ -14,13 +53,6 @@ scriptencoding = utf-8
 " The following are some sensible defaults for Vim for most users.
 " We attempt to change as little as possible from Vim's defaults,
 " deviating only where it makes sense
-set nocompatible        " Use Vim defaults (much better!)
-set bs=2                " Allow backspacing over everything in insert mode
-set ai                  " Always set auto-indenting on
-set history=50          " keep 50 lines of command history
-set ruler               " Show the cursor position all the time
-"
-set viminfo='20,\"500   " Keep a .viminfo file.
 "
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -80,15 +112,6 @@ endif
 " Make sure we have a sane fallback for encoding detection
 if &fileencodings !~? "default"
   set fileencodings+=default
-endif
-" }}}
-
-" {{{ Syntax highlighting settings
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
 endif
 " }}}
 
@@ -193,21 +216,23 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 " }}}
 
-" vim: set fenc=utf-8 tw=80 sw=2 sts=2 et foldmethod=marker :
 
-set tags=./tags,/usr/src/linux/tags,/usr/include/tags
+scriptencoding = utf-8
+set tags=./tags
 set number
 set sw=4 sts=4 ts=8 et
 set nocompatible
 set showmatch
 set ci
 set smartindent
-set ai
 set title
 set hlsearch
-set ruler
 set history=200
 set mouse=a
+set bs=2                " Allow backspacing over everything in insert mode
+set ai                  " Always set auto-indenting on
+set ruler               " Show the cursor position all the time
+set viminfo='20,\"500   " Keep a .viminfo file.
 syntax on
 
 filetype on
@@ -216,20 +241,38 @@ filetype plugin indent on
 
 colorscheme 256-jungle
 
-set csprg=/usr/bin/cscope
+set csprg=/usr/local/bin/cscope
 set csto=0
 set cst
+set nocsverb
 
 if filereadable("./cscope.out")
     cs add cscope.out
-else
+elseif filereadable("../cscope.out")
+    cs add ../cscope.out
+elseif filereadable("../../cscope.out")
+    cs add ../../cscope.out
+elseif filereadable("../../../cscope.out")
+    cs add ../../../cscope.out
+elseif filereadable("../../../../cscope.out")
+    cs add ../../../../cscope.out
+else 
 "    cs add /usr/src/linux-3.6.11-gentoo/cscope.out
 endif
 
+"find -iname "*.c"    > ./cscope.files
+"find -iname "*.cpp" >> ./cscope.files
+"find -iname "*.h"   >> ./cscope.files
+"find -iname "*.hpp" >> ./cscope.files
+"cscope -cb
+"ctags --fields=+i -n -R -L ./cscope.files
+"cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
+set csverb
+
 map <F3> <c-w><c-w>
-map <F4> :Tlist<cr>
-map <F7> :NERDTree<cr>
-let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+map <F4> :tlist<CR>
+nmap <C-E> :NERDTreeToggle<CR>
+let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
 let Tlist_Inc_Winwidth = 0
 let Tlist_Exit_OnlyWindow = 0
 
@@ -241,6 +284,8 @@ nmap <C-H> <C-W>h
 nmap <C-J> <C-W>j
 nmap <C-K> <C-W>k
 nmap <C-L> <C-W>l
+nmap <C-F>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-F>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 
 let g:SrcExpl_winHeight = 8
 let g:SrcExpl_refreshTime = 100
