@@ -19,6 +19,7 @@ Plugin 'majutsushi/tagbar'                  " Tagbar
 Plugin 'bling/vim-airline'                  " Airline
 Plugin 'milkypostman/vim-togglelist'
 Plugin 'cespare/tlist'
+Plugin 'vim-scripts/taglist.vim'
 "[cscope](http://cscope.sourceforge.net/) 
 "[ctags](http://ctags.sourceforge.net/)   " let Vundle manage Vundle, required
 
@@ -270,7 +271,7 @@ endif
 set csverb
 
 map <F3> <c-w><c-w>
-map <F4> :tlist<CR>
+map <F4> :Tlist<CR>
 nmap <C-E> :NERDTreeToggle<CR>
 let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
 let Tlist_Inc_Winwidth = 0
