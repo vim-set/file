@@ -247,19 +247,17 @@ set csto=0
 set cst
 set nocsverb
 
-if filereadable("./cscope.out")
-    cs add cscope.out
-elseif filereadable("../cscope.out")
-    cs add ../cscope.out
-elseif filereadable("../../cscope.out")
-    cs add ../../cscope.out
-elseif filereadable("../../../cscope.out")
-    cs add ../../../cscope.out
-elseif filereadable("../../../../cscope.out")
-    cs add ../../../../cscope.out
+let search = 'cscope.out'
+let i = 1
+while i < 15
+let i += 1
+if filereadable(search) 
+    exec 'cs add' search
+    break
 else 
-"    cs add /usr/src/linux-3.6.11-gentoo/cscope.out
+    let search = '../' . search
 endif
+endwhile
 
 "find -iname "*.c"    > ./cscope.files
 "find -iname "*.cpp" >> ./cscope.files
@@ -287,6 +285,7 @@ nmap <C-K> <C-W>k
 nmap <C-L> <C-W>l
 nmap <C-F>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-F>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-F>f :cs find f <C-R>=expand("<cword>")<CR><CR>
 
 let g:SrcExpl_winHeight = 8
 let g:SrcExpl_refreshTime = 100

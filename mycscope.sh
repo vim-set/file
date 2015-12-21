@@ -1,13 +1,31 @@
 #!/bin/bash
 
+BROWSER_PATH=apps/appl/browser/corsair/base-2.0
+OCTO_APPKIT_PATH=apps/octo/appkit/
+OCTO_SERVICE_PATH=apps/octo/service/
+DEVICE_PATH=device/platform/driver/
 
 echo "[Indexing for cscope]..."
-find $(pwd) ! \( -path './build' -prune \) -iname "*.c"    > ./cscope.files
-find $(pwd) ! \( -path './build' -prune \) -iname "*.cc"    > ./cscope.files
-find $(pwd) ! \( -path './build' -prune \) -iname "*.cpp" >> ./cscope.files
-find $(pwd) ! \( -path './build' -prune \) -iname "*.h"   >> ./cscope.files
-find $(pwd) ! \( -path './build' -prune \) -iname "*.hh"   >> ./cscope.files
-find $(pwd) ! \( -path './build' -prune \) -iname "*.hpp" >> ./cscope.files
+echo "[Browser Source Path]..."
+find $(pwd)/$BROWSER_PATH ! \( -path $(pwd)/$BROWSER_PATH/build -prune \) -iname "*.c"    > ./cscope.files
+find $(pwd)/$BROWSER_PATH ! \( -path $(pwd)/$BROWSER_PATH/build -prune \) -iname "*.cc"  >> ./cscope.files
+find $(pwd)/$BROWSER_PATH ! \( -path $(pwd)/$BROWSER_PATH/build -prune \) -iname "*.cpp" >> ./cscope.files
+find $(pwd)/$BROWSER_PATH ! \( -path $(pwd)/$BROWSER_PATH/build -prune \) -iname "*.h"   >> ./cscope.files
+find $(pwd)/$BROWSER_PATH ! \( -path $(pwd)/$BROWSER_PATH/build -prune \) -iname "*.hpp" >> ./cscope.files
+
+echo "[OCTO Source Path]..."
+find $(pwd)/$OCTO_APPKIT_PATH -iname "*.c"   >> ./cscope.files
+find $(pwd)/$OCTO_APPKIT_PATH -iname "*.cpp" >> ./cscope.files
+find $(pwd)/$OCTO_APPKIT_PATH -iname "*.h"   >> ./cscope.files
+
+find $(pwd)/$OCTO_SERVICE_PATH -iname "*.c"   >> ./cscope.files
+find $(pwd)/$OCTO_SERVICE_PATH -iname "*.cpp" >> ./cscope.files
+find $(pwd)/$OCTO_SERVICE_PATH -iname "*.h"   >> ./cscope.files
+
+echo "[Device Source Path]..."
+find $(pwd)/$DEVICE_PATH -iname "*.c"   >> ./cscope.files
+find $(pwd)/$DEVICE_PATH -iname "*.h"   >> ./cscope.files 
+
 cscope -cb
 
 rm ./cscope.files
