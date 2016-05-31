@@ -20,6 +20,7 @@ Plugin 'bling/vim-airline'                  " Airline
 Plugin 'milkypostman/vim-togglelist'
 Plugin 'cespare/tlist'
 Plugin 'vim-scripts/taglist.vim'
+Plugin 'AutoComplPop'
 "[cscope](http://cscope.sourceforge.net/) 
 "[ctags](http://ctags.sourceforge.net/)   " let Vundle manage Vundle, required
 
@@ -117,11 +118,11 @@ endif
 " }}}
 
 " {{{ Terminal fixes
-if &term ==? "xterm"
-  set t_Sb=^[4%dm
-  set t_Sf=^[3%dm
-  set ttymouse=xterm2
-endif
+"if &term ==? "xterm"
+"  set t_Sb=^[4%dm
+"  set t_Sf=^[3%dm
+"  set ttymouse=xterm2
+"endif
 
 if &term ==? "gnome" && has("eval")
   " Set useful keys that vim doesn't discover via termcap but are in the
@@ -219,21 +220,25 @@ endif
 
 
 scriptencoding = utf-8
-set tags=./tags
 set number
 set sw=4 sts=4 ts=8 et
 set nocompatible
 set showmatch
 set ci
 set smartindent
+set incsearch
 set title
 set hlsearch
 set history=200
 set mouse=a
 set bs=2                " Allow backspacing over everything in insert mode
+set autoindent
+set ignorecase
+set cindent
 set ai                  " Always set auto-indenting on
 set ruler               " Show the cursor position all the time
 set viminfo='20,\"500   " Keep a .viminfo file.
+set colorcolumn=95
 syntax on
 
 filetype on
@@ -245,17 +250,21 @@ colorscheme 256-jungle
 set csprg=/usr/local/bin/cscope
 set csto=0
 set cst
+set nocst              " no using cscope tag
 set nocsverb
 
-let search = 'cscope.out'
+let cscope_tag = 'cscope.out'
+let ctags = 'tags'
 let i = 1
 while i < 15
 let i += 1
-if filereadable(search) 
-    exec 'cs add' search
+if filereadable(cscope_tag) 
+    exec 'cs add' cscope_tag
+    let &tags=ctags
     break
 else 
-    let search = '../' . search
+    let cscope_tag = '../' . cscope_tag
+    let ctags = '../' . ctags
 endif
 endwhile
 
@@ -285,7 +294,8 @@ nmap <C-K> <C-W>k
 nmap <C-L> <C-W>l
 nmap <C-F>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-F>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-F>f :cs find f <C-R>=expand("<cword>")<CR><CR>
+map <C-]> :tj <C-R>=expand("<cword>")<CR><CR>
+map <C-F>f :cs find f 
 
 let g:SrcExpl_winHeight = 8
 let g:SrcExpl_refreshTime = 100
