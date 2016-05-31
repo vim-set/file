@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/skchoi2/works/hd9000iru/apps/appl/webappl/build'
+let g:netrw_dirhist_2='/home/skchoi2/works/hd9000iru/apps/appl/browser/corsair/base-2.0/humax-impl'
+let g:netrw_dirhist_3='/home/skchoi2/works/hgs1000s-35/apps/appl/browser/corsair/base-2.0/port/src/opl/FileSystem'
+let g:netrw_dirhist_4='/home/skchoi2/works/hgs1000s-35/apps/appl/browser/corsair/base-2.0/port/src/opl'
+let g:netrw_dirhist_5='/home/skchoi2/works/hgs1000s-46'
+let g:netrw_dirhist_6='/nfsroot/skchoi2/wa8600/root/etc'
+let g:netrw_dirhist_7='/home/skchoi2/works/fvp4000t-46/apps/appl/browser/archon/base-2.0/humax-impl/uva/backends/humax'
+let g:netrw_dirhist_8='/home/skchoi2/works/ysr2000-46/apps/make/_gen_rootfs/root/usr/lib'
+let g:netrw_dirhist_9='/home/skchoi2/works/hgs1000s-35/apps/appl/browser/corsair/base-2.0/humax-impl/script/release'

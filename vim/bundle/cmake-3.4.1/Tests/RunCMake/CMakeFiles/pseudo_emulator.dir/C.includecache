@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/skchoi2/works/vim-set/file/vim/bundle/cmake-3.4.1/Tests/RunCMake/pseudo_emulator.c
+stdio.h
+-
+
