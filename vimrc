@@ -221,7 +221,8 @@ endif
 
 scriptencoding = utf-8
 set number
-set sw=4 sts=4 ts=8 et
+set expandtab
+set sw=4 sts=4 ts=4 et
 set nocompatible
 set showmatch
 set ci
@@ -239,6 +240,8 @@ set ai                  " Always set auto-indenting on
 set ruler               " Show the cursor position all the time
 set viminfo='20,\"500   " Keep a .viminfo file.
 set colorcolumn=95
+set lcs=tab:>-          " Indicate Tab Space
+set list
 syntax on
 
 filetype on
