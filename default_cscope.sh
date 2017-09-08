@@ -1,14 +1,16 @@
+#!/bin/bash
+
 echo "[ALL Source Path]..."
-find -iname "*.c"   >> ./cscope.files
-find -iname "*.cc"  >> ./cscope.files
-find -iname "*.cpp" >> ./cscope.files
+find $(pwd) -iname "*.c"   >> ./cscope.files
+find $(pwd) -iname "*.cc"  >> ./cscope.files
+find $(pwd) -iname "*.cpp" >> ./cscope.files
 
 echo "[ALL Header Path]..."
-find -iname "*.h"   >> ./cscope.files
-find -iname "*.hpp" >> ./cscope.files
-cscope -cb
+find $(pwd) -iname "*.h"   >> ./cscope.files
+find $(pwd) -iname "*.hpp" >> ./cscope.files
+echo "[ALL Header Path2]..."
+cscope -b
 
 echo "[Indexing for ctags]..."
 ctags --fields=+i -n -R -L ./cscope.files
 rm ./cscope.files
-#cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p

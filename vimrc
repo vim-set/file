@@ -21,8 +21,13 @@ Plugin 'milkypostman/vim-togglelist'
 Plugin 'cespare/tlist'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'AutoComplPop'
-"[cscope](http://cscope.sourceforge.net/) 
-"[ctags](http://ctags.sourceforge.net/)   " let Vundle manage Vundle, required
+Plugin 'airblade/vim-gitgutter'             " airline of git
+Plugin 'tpope/vim-fugitive'                 " git command ex> Glog, Gstatus, Gmv
+Plugin 'mattn/emmet-vim'                    " ctrl + y + , = html5 tag
+Plugin 'terryma/vim-multiple-cursors'       " multiple cursors
+Plugin 'DirDiff.vim'                        " DirDiff
+"[cscope](http://cscope.sourceforge.net/)   " cscope 
+"[ctags](http://ctags.sourceforge.net/)     " ctags 
 
 Plugin 'othree/javascript-libraries-syntax.vim'
 
@@ -290,7 +295,7 @@ let Tlist_Exit_OnlyWindow = 0
 let Tlist_Auto_Open =0
 let Tlit_Use_Right_Window = 1
 
-nmap <F5> :SrcExplToggle<cr>
+nmap <F5> :SrcExplToggle<CR>
 nmap <C-H> <C-W>h
 nmap <C-J> <C-W>j
 nmap <C-K> <C-W>k
@@ -299,12 +304,16 @@ nmap <C-F>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-F>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 map <C-]> :tj <C-R>=expand("<cword>")<CR><CR>
 map <C-F>f :cs find f 
+imap <INSERT>` printf("[skchoi2][%s][%d] +++++++++++++++++++++++++++++++++\n", __FUNCTION__,__LINE__);
 
 let g:SrcExpl_winHeight = 8
 let g:SrcExpl_refreshTime = 100
 let g:SrcExpl_jumpKey = "<ENTER>"
 let g:SrcExpl_gobackKey = "<SPACE>"
 let g:SrcExpl_isUpdateTags = 0
+
+let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,*.svn-base,*.o,*.d,*.so,*.svn"
+let g:DirDiffWindowSize = 10
 
 let NERDTreeWinPos = "left"
 
@@ -316,4 +325,6 @@ map <Char-27>n :tabn<cr>
 
 
 nmap <Char-27>j : !echo %:p<cr>
+
+let g:airline_powerline_fonts = 1
 
