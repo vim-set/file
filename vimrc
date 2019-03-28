@@ -26,6 +26,8 @@ Plugin 'tpope/vim-fugitive'                 " git command ex> Glog, Gstatus, Gmv
 Plugin 'mattn/emmet-vim'                    " ctrl + y + , = html5 tag
 Plugin 'terryma/vim-multiple-cursors'       " multiple cursors
 Plugin 'DirDiff.vim'                        " DirDiff
+Plugin 'git://github.com/leafgarland/typescript-vim.git' "TypeScript
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "[cscope](http://cscope.sourceforge.net/)   " cscope 
 "[ctags](http://ctags.sourceforge.net/)     " ctags 
 
@@ -304,7 +306,8 @@ nmap <C-F>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-F>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 map <C-]> :tj <C-R>=expand("<cword>")<CR><CR>
 map <C-F>f :cs find f 
-imap <INSERT>` printf("[skchoi2][%s][%d] +++++++++++++++++++++++++++++++++\n", __FUNCTION__,__LINE__);
+map <C-F>z :FZF<CR>
+imap <INSERT>` printf("[skchoi2][%s][%d] +++++++++++++++++++++++++++++++++  \n", __FUNCTION__,__LINE__);
 
 let g:SrcExpl_winHeight = 8
 let g:SrcExpl_refreshTime = 100
